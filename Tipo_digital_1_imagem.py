@@ -83,8 +83,8 @@ def identifica_imagem(folder):
     label, confidence = digital_recognizer.predict(original)
     if confidence>filtro :
         label=4
-    return types[label]
+    return [confidence,types[label],linhas]
 
-print(identifica_imagem(r'D:\Eric\Documentos\Unesc\Grupos de pesquisa\Interpretacao_digitais\Imagens_separadas_esqueletizadas\presilha\284.bmp'))
+print(identifica_imagem(r'D:\Eric\Documentos\Unesc\Grupos de pesquisa\Interpretacao_digitais\Imagens_Originais\9139.bmp'))
 
 
