@@ -95,13 +95,13 @@ def convertefoto(caminho_imagem):
 def identifica_imagem(folder):
     # pre: recebe a localização da imagem
     # pos: retorna o indice de confiança, o tipo de digital reconhecido e o numero de linhas num vetor de 3 elementos
-    digital_recognizer = cv2.face.LBPHFaceRecognizer_create()
-    linhas, original = convertefoto(folder)
-    digital_recognizer.read(endereco_xml + '\imagens_treinadas.xml')
-    label, confidence = digital_recognizer.predict(original)
-    if confidence > filtro:
-        label = 4
-    return [confidence, types[label], linhas]
+    digital_recognizer = cv2.face.LBPHFaceRecognizer_create() # Instancia o classificador de imagens
+    linhas, original = convertefoto(folder) # Esqueletiza a foto e conta numero de linhas
+    digital_recognizer.read(endereco_xml + '\imagens_treinadas.xml') # carrega o classificador ja treinado
+    label, confidence = digital_recognizer.predict(original) # reconhece o padrão da impressão digital
+    if confidence > filtro: # se a confidence foi menor que o filtro
+        label = 4  # seta o tipo como outros
+    return [confidence, types[label], linhas] # retorna um vetor com confidence, tipo e numero de linhas
 
 
 print(identifica_imagem(r'D:\Eric\Documentos\Unesc\Grupos de pesquisa\Interpretacao_digitais\Imagens_Originais\9139.bmp')) # chama a função de identificação de imagens
